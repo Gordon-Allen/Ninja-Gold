@@ -1,0 +1,55 @@
+.header_row h2 {
+    display: inline-block;
+    margin-left: 525px;
+    font-size: 25px;
+}
+.row{
+    width: 100%;
+    display: flex;
+    margin-left: 150px;
+}
+.header_row{
+    width: 100%;
+    display: flex;
+    text-align: center;
+}
+.header_row form input {
+    text-align: center;
+    margin-top: 25px;
+    margin-left: 15px;
+    font-size: 20px;
+}
+.reset{
+    display: inline-block;
+    margin-left: 25px;
+}
+.location{
+    width: 250px;
+    height: 250px;
+    border: 2px gold solid;
+    text-align: center;
+    margin-bottom: 25px;
+}
+.location h4{
+    font-size: 25px;
+    text-decoration: underline;
+}
+.location form input {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 15px;
+}
+.activity_log{
+    overflow: scroll;
+    width: 1012px;
+    height: 325px;
+    border: 2px blue solid;
+}
+.activity_log h3{
+    margin: 10px 0px -10px 20px;
+    font-size: 25px;
+}
+.activity_log li{
+    margin-left: 10px;
+    font-size: 16px;
+}

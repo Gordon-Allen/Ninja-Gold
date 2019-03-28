@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main_app/css/style.css' %}">
+    <title>Ninja Gold</title>
+</head>
+<body>
+    <div class="header_row">
+        <h2>Your Gold: {{total}}   </h2>
+        <form action="/reset" method="POST">
+            {% csrf_token %}
+            <input type="submit" name="submit" value="Reset Your Gold">
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="location">
+            <h4>Farm</h4>
+            <p>(Earns 10->20 Gold)</p>
+                <form action="/process_money" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="building" value="Farm">
+                <input type="submit" name="submit" value="Find Gold?">
+            </form>
+        </div>
+        <div class="location">
+            <h4>Cave</h4>
+            <p>(Earns 5->10 Gold)</p>
+            <form action="/process_money" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="building" value="Cave">
+                <input type="submit" name="submit" value="Find Gold?">
+            </form>
+        </div>
+        <div class="location">
+            <h4>House</h4>
+            <p>(Earns 2->5 Gold)</p>
+            <form action="/process_money" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="building" value="House">
+                <input type="submit" name="submit" value="Find Gold?">
+            </form>
+        </div>
+        <div class="location">
+            <h4>Casino</h4>
+            <p>(Earns 0->50 Gold)</p>
+            <form action="/process_money" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="building" value="Casino">
+                <input type="submit" name="submit" value="Find Gold?">
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="activity_log">
+            <h3>Activity Log:</h3>
+                <ul>
+                    {% for sentence in request.session.activity %}
+                    {% if sentence.amount > 0 %}
+                    <li style="color:green; margin-top: 10px;">
+                        You earned {{sentence.amount}} from the {{sentence.building}}! {{sentence.date}}
+                    </li>
+                    {%else%}
+                    <li style="color:red; margin-top: 10px;">
+                        You lost {{sentence.amount}} from the {{sentence.building}}......OUCH! {{sentence.date}}
+                    </li>
+                {% endif %}
+                {% endfor %}
+                </ul>
+        </div>
+    </div>
+
+</body>
+</html>
